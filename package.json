@@ -1,0 +1,33 @@
+{
+  "name": "karma-sauce-launcher",
+  "version": "0.0.1",
+  "description": "A Karma plugin. Launch on Apache Cordova",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:freedomjs/karma-cordova-launcher.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-launcher",
+    "cordova"
+  ],
+  "author": "Raymond Cheng <ryscheng@cs.washington.edu> (http://raymondcheng.net)",
+  "dependencies": {
+    "q": "~0.9.6",
+    "ncp": "^0.5.1",
+    "child-process-promise": "^0.2.0-SNAPSHOT.1389671754086"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-bump": "~0.0.7",
+    "grunt-npm": "~0.0.2",
+    "grunt-auto-release": "~0.0.2",
+    "karma-jasmine": "^0.1.5"
+  },
+  "peerDependencies": {
+    "karma": ">=0.12.16"
+  },
+  "license": "Apache-2.0"
+}
