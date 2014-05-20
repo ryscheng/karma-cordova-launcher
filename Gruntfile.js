@@ -9,9 +9,15 @@ module.exports = function(grunt) {
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
-        push: true,
-        pushTo: 'upstream'
-        
+        push: false
+      }
+    },
+    'npm-publish': {
+      options: {
+        // list of tasks that are required before publishing
+        requires: [],
+        // if the workspace is dirty, abort publishing (to avoid publishing local changes)
+        abortIfDirty: true,
       }
     }
   });
@@ -19,7 +25,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-npm');
   grunt.loadNpmTasks('grunt-bump');
 
-  grunt.registerTask('release', ['bump']);
+  grunt.registerTask('release', function(arg) {
+    if (arguments.length === 0) {
+      arg = 'patch';
+    }
+    grunt.task.run([
+      'bump:'+arg,
+      'npm-publish'
+    ]);
+  });
   grunt.registerTask('default', []);
 
 };
