@@ -55,7 +55,7 @@ Type: Array of `String`
 Default: `[]`
 
 An array of Cordova platforms to test on. For valid values, see
-[Cordova Platform Support]{http://cordova.apache.org/docs/en/3.4.0/guide_support_index.md.html#Platform%20Support}
+[Cordova Platform Support](http://cordova.apache.org/docs/en/3.4.0/guide_support_index.md.html#Platform%20Support)
 
 ### plugins
 Type: Array of `String`
