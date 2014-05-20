@@ -1,5 +1,5 @@
 {
-  "name": "karma-sauce-launcher",
+  "name": "karma-cordova-launcher",
   "version": "0.0.4",
   "description": "A Karma plugin. Launch on Apache Cordova",
   "main": "index.js",
