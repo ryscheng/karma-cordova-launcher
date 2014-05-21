@@ -44,7 +44,7 @@ var Cordova = function(id, emitter, args, logger, config) {
         errorHandler(ncp_err);
         return;
       }
-      fs.readFile(CORDOVA_DIR + "/www/index.html", function(read_err, read_data) {
+      fs.readFile(CORDOVA_DIR + "/www/js/inserttest.js", function(read_err, read_data) {
         if (read_err) {
           errorHandler(read_err);
           return;
@@ -52,7 +52,7 @@ var Cordova = function(id, emitter, args, logger, config) {
         var newUrl = url + "?id=" + id;
         newUrl = newUrl.replace(/localhost/g, "10.0.2.2");
         var toWrite = read_data.toString().replace(/NEWURL/g, newUrl);
-        fs.writeFile(CORDOVA_DIR + "/www/index.html", toWrite, function (write_err) {
+        fs.writeFile(CORDOVA_DIR + "/www/js/inserttest.js", toWrite, function (write_err) {
           if (write_err) {
             errorHandler(write_err);
             return;
