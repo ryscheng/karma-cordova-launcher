@@ -7,7 +7,19 @@ var CORDOVA_DIR = '/tmp/cordova_test';
 var TEMPLATE_DIR = __dirname + '/' + 'template/';
 
 function runCordovaCmd(args) {
-  return spawn(BIN, args, {
+  var binary, arguments;
+  
+  // MB-2014-06-24: solution to detect windows as proposed here:
+  // http://stackoverflow.com/a/8684009/2167000
+  if (/^win/.test(process.platform)) {
+    binary = 'cmd.exe'
+    arguments = ['/C', 'cordova ' + args.join(' ')];
+  } else {
+    arguments = args;
+    binary = BIN;
+  }
+  
+  return spawn(binary, arguments, {
     cwd: CORDOVA_DIR
   }).progress(function(childProcess) {
     childProcess.stdout.on('data', function(data) {
@@ -84,6 +96,10 @@ var Cordova = function(id, emitter, args, logger, config) {
       });
     });
   };
+  
+  this.isCaptured = function() {
+    return true;
+  }
 
   this.kill = function(done) {
     self.log.debug("Killing");
