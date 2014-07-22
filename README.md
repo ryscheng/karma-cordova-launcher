@@ -11,6 +11,13 @@ Install `karma-cordova-launcher` as a `devDependency` in your package.json:
 npm install karma-cordova-launcher --save-dev
 ```
 
+Note: This plugin currently depends on `cordova` being on your PATH.
+You can install `cordova` globally by:
+
+```bash
+npm install -g cordova
+```
+
 ## Usage
 
 This launcher is typically used to test your unit tests locally on a mobile device emulator.
@@ -63,3 +70,10 @@ Default: `[]`
 
 An array of Cordova plugins to install. For valid plugins, see the
 [Cordova Plugins Registry](http://plugins.cordova.io/#/)
+
+## Runtime FAQ
+What platforms have been tested?
+* Android L on Ubuntu 14.04LTS with Cordova 3.5.0
+  * Must set an SD card and "Use Host GPU" in device settings
+Where is the Cordova project generated?
+* The project is stored here: `/tmp/cordova_test/`. Delete it to start fresh
