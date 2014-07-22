@@ -72,8 +72,8 @@ An array of Cordova plugins to install. For valid plugins, see the
 [Cordova Plugins Registry](http://plugins.cordova.io/#/)
 
 ## Runtime FAQ
-What platforms have been tested?
-* Android L on Ubuntu 14.04LTS with Cordova 3.5.0
-  * Must set an SD card and "Use Host GPU" in device settings
-Where is the Cordova project generated?
-* The project is stored here: `/tmp/cordova_test/`. Delete it to start fresh
+* What platforms have been tested?
+  - Android L on Ubuntu 14.04LTS with Cordova 3.5.0
+  - Must set an SD card and "Use Host GPU" in device settings
+* Where is the Cordova project generated?
+  - The project is stored here: `/tmp/cordova_test/`. Delete it to start fresh
