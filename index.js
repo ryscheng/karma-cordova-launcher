@@ -59,7 +59,13 @@ var Cordova = function(id, emitter, args, logger, config) {
           }
           var platforms = self.settings.platforms;
           var plugins = self.settings.plugins;
-          var promise = runCordovaCmd(['plugin', 'add'].concat(plugins)).fail(errorHandler);
+          var promise;
+
+          if (typeof plugins !== 'undefined') {
+            promise = runCordovaCmd(['plugin', 'add'].concat(plugins)).fail(errorHandler);
+          } else {
+            promise = runCordovaCmd(['plugin', 'add', 'org.apache.cordova.console']).fail(errorHandler);
+          }
       
           for (var i=0; i<platforms.length; i++) {
             promise = promise.then(
