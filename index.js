@@ -57,29 +57,25 @@ var Cordova = function(id, emitter, args, logger, config) {
             errorHandler(write_err);
             return;
           }
-          var platforms = self.settings.platforms;
-          var plugins = self.settings.plugins;
-          var promise = runCordovaCmd(['plugin', 'add'].concat(plugins)).fail(errorHandler);
-      
-          for (var i=0; i<platforms.length; i++) {
-            promise = promise.then(
-              runCordovaCmd.bind({}, ['platform', 'add', platforms[i]]),
-              runCordovaCmd.bind({}, ['platform', 'add', platforms[i]])
-            );
+
+          var platforms = self.settings.platforms,
+              plugins = self.settings.plugins,
+              promise = runCordovaCmd.bind({}, ['platform', 'add'].concat(platforms));
+          
+          if (plugins && plugins.length) {
+            promise = promise.then(function() {
+              return runCordovaCmd(['plugin', 'add'].concat(plugins));
+            });
           }
-          promise = promise.then(function(result) {
-            console.log('Done adding platforms');
-          }, function(err) {
-            console.log('Done adding platforms');
-          });
       
-          promise = promise.then(runCordovaCmd.bind({}, ['build']), errorHandler);
+          promise = promise.then(runCordovaCmd.bind({}, ['build']));
           promise.then(function() {
             for (var i=0; i<platforms.length; i++) {
               runCordovaCmd(['emulate', platforms[i]], errorHandler); 
             }
-          }, errorHandler);
-
+          });
+          
+          promise.catch(errHandler);
         });
       });
     });
