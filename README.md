@@ -39,6 +39,9 @@ module.exports = function(config) {
     // ...
     cordovaSettings: {
       platforms: ['android', 'ios'],
+	  mode: 'emulate',
+      hostip: '10.0.2.2',
+      target: '0468de2a213eae29',
       plugins: [
         'org.apache.cordova.console'
       ]
@@ -49,6 +52,7 @@ module.exports = function(config) {
   });
 };
 ```
+mode can be either 'run' or 'emulate' (emualte by default), target is used to specify a target device (optional), hostip is the ip of the machine running the karma server as accessible from the emualted/physical device (the default one used by the Android emulator is used by default, for Genymotion use 10.0.3.2).
 
 ### Example karma-cordova-launcher configs
 
@@ -57,7 +61,7 @@ For example configs using this launcher, check out the Grunt and Karma configura
 
 ## `cordovaSettings` config properties
 
-### platforms 
+### platforms
 Type: Array of `String`
 Default: `[]`
 

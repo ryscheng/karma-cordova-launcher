@@ -8,7 +8,7 @@ var TEMPLATE_DIR = __dirname + '/' + 'template/';
 
 function runCordovaCmd(args) {
   var binary, arguments;
-  
+
   // MB-2014-06-24: solution to detect windows as proposed here:
   // http://stackoverflow.com/a/8684009/2167000
   if (/^win/.test(process.platform)) {
@@ -18,7 +18,7 @@ function runCordovaCmd(args) {
     arguments = args;
     binary = BIN;
   }
-  
+
   return spawn(binary, arguments, {
     cwd: CORDOVA_DIR
   }).progress(function(childProcess) {
@@ -37,10 +37,10 @@ var Cordova = function(id, emitter, args, logger, config) {
   self.log = logger.create('launcher.cordova');
   self.name = self.platform + " on Cordova";
 
-  console.log(self.settings);
+  console.log('using settings: ', self.settings);
 
   emitter.on('exit', function(done){
-    console.log("!!!EXITING!!!"); 
+    console.log("!!!EXITING!!!");
     done();
   });
 
@@ -62,7 +62,11 @@ var Cordova = function(id, emitter, args, logger, config) {
           return;
         }
         var newUrl = url + "?id=" + id;
-        newUrl = newUrl.replace(/localhost/g, "10.0.2.2");
+        var ip = '10.0.2.2'; //default ip used by the Android emulator
+        if(self.settings.hostip) {
+          ip = self.settings.hostip;
+        }
+        newUrl = newUrl.replace(/localhost/g, ip);
         var toWrite = read_data.toString().replace(/NEWURL/g, newUrl);
         fs.writeFile(CORDOVA_DIR + "/www/js/inserttest.js", toWrite, function (write_err) {
           if (write_err) {
@@ -71,6 +75,14 @@ var Cordova = function(id, emitter, args, logger, config) {
           }
           var platforms = self.settings.platforms;
           var plugins = self.settings.plugins;
+          var mode = 'emulate';
+          if(self.settings.mode){
+            mode = self.settings.mode;
+          }
+          var target = '';
+          if(self.settings.target){
+            target = '--target='+self.settings.target;
+          }
           var promise;
 
           if (typeof plugins !== 'undefined') {
@@ -78,7 +90,7 @@ var Cordova = function(id, emitter, args, logger, config) {
           } else {
             promise = runCordovaCmd(['plugin', 'add', 'org.apache.cordova.console']).fail(errorHandler);
           }
-      
+
           for (var i=0; i<platforms.length; i++) {
             promise = promise.then(
               runCordovaCmd.bind({}, ['platform', 'add', platforms[i]]),
@@ -90,11 +102,11 @@ var Cordova = function(id, emitter, args, logger, config) {
           }, function(err) {
             console.log('Done adding platforms');
           });
-      
+
           promise = promise.then(runCordovaCmd.bind({}, ['build']), errorHandler);
           promise.then(function() {
             for (var i=0; i<platforms.length; i++) {
-              runCordovaCmd(['emulate', platforms[i]], errorHandler); 
+              runCordovaCmd([mode, platforms[i], target], errorHandler);
             }
           }, errorHandler);
 
@@ -102,7 +114,7 @@ var Cordova = function(id, emitter, args, logger, config) {
       });
     });
   };
-  
+
   this.isCaptured = function() {
     return true;
   }
@@ -111,7 +123,7 @@ var Cordova = function(id, emitter, args, logger, config) {
     self.log.debug("Killing");
     done();
   };
-  
+
   this.toString = function() {
     return self.name;
   };
