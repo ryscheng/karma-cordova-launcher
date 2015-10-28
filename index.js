@@ -62,7 +62,10 @@ var Cordova = function(id, emitter, args, logger, config) {
           return;
         }
         var newUrl = url + "?id=" + id;
-        var ip = self.settings.hostip;
+        var ip = '10.0.2.2'; //default ip used by the Android emulator
+        if(self.settings.hostip) {
+          ip = self.settings.hostip;
+        }
         newUrl = newUrl.replace(/localhost/g, ip);
         var toWrite = read_data.toString().replace(/NEWURL/g, newUrl);
         fs.writeFile(CORDOVA_DIR + "/www/js/inserttest.js", toWrite, function (write_err) {
@@ -72,7 +75,10 @@ var Cordova = function(id, emitter, args, logger, config) {
           }
           var platforms = self.settings.platforms;
           var plugins = self.settings.plugins;
-          var mode = self.settings.mode;
+          var mode = 'emulate';
+          if(self.settings.mode){
+            mode = self.settings.mode;
+          }
           var target = '';
           if(self.settings.target){
             target = '--target='+self.settings.target;

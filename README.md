@@ -52,7 +52,7 @@ module.exports = function(config) {
   });
 };
 ```
-mode can be either 'run' or 'emulate', target is optional and is used to specify a target device, hostip is the ip of the machine running the karma server as accessible from the emualted/physical device. For the standard Android emulator use 10.0.2.2, for Genymotion use 10.0.3.2.
+mode can be either 'run' or 'emulate' (emualte by default), target is used to specify a target device (optional), hostip is the ip of the machine running the karma server as accessible from the emualted/physical device (the default one used by the Android emulator is used by default, for Genymotion use 10.0.3.2).
 
 ### Example karma-cordova-launcher configs
 
