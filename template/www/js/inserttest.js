@@ -5,4 +5,5 @@ var runTests = function() {
   testFrame.id = "test-frame";
   testFrame.src = "NEWURL";
   document.getElementsByTagName('body')[0].appendChild(testFrame);
+  INIT
 };
