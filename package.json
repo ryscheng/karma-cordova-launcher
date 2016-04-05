@@ -6,18 +6,14 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/freedomjs/karma-cordova-launcher.git"
+    "url": "git@github.com:freedomjs/karma-cordova-launcher.git"
   },
   "keywords": [
     "karma-plugin",
     "karma-launcher",
     "cordova"
   ],
-  "author": {
-    "name": "Raymond Cheng",
-    "email": "ryscheng@cs.washington.edu",
-    "url": "http://raymondcheng.net"
-  },
+  "author": "Raymond Cheng <ryscheng@cs.washington.edu> (http://raymondcheng.net)",
   "dependencies": {
     "q": "~0.9.6",
     "ncp": "^0.5.1",
@@ -33,32 +29,5 @@
   "peerDependencies": {
     "karma": ">=0.12.16"
   },
-  "license": "Apache-2.0",
-  "gitHead": "7ee0b879f437d9b075a84183392cd66e86df8507",
-  "bugs": {
-    "url": "https://github.com/freedomjs/karma-cordova-launcher/issues"
-  },
-  "homepage": "https://github.com/freedomjs/karma-cordova-launcher#readme",
-  "_id": "karma-cordova-launcher@0.0.9",
-  "_shasum": "7df0632529447dfa5a782f13831a2f44304ec28a",
-  "_from": "karma-cordova-launcher@latest",
-  "_npmVersion": "3.3.8",
-  "_nodeVersion": "4.2.1",
-  "_npmUser": {
-    "name": "ryscheng",
-    "email": "ryscheng@cs.washington.edu"
-  },
-  "dist": {
-    "shasum": "7df0632529447dfa5a782f13831a2f44304ec28a",
-    "tarball": "https://registry.npmjs.org/karma-cordova-launcher/-/karma-cordova-launcher-0.0.9.tgz"
-  },
-  "maintainers": [
-    {
-      "name": "ryscheng",
-      "email": "ryscheng@cs.washington.edu"
-    }
-  ],
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/karma-cordova-launcher/-/karma-cordova-launcher-0.0.9.tgz",
-  "readme": "ERROR: No README data found!"
+  "license": "Apache-2.0"
 }
