@@ -85,11 +85,10 @@ var Cordova = function(id, emitter, args, logger, config) {
           }
           var promise;
 
-          if (typeof plugins !== 'undefined') {
-            promise = runCordovaCmd(['plugin', 'add'].concat(plugins)).fail(errorHandler);
-          } else {
-            promise = runCordovaCmd(['plugin', 'add', 'org.apache.cordova.console']).fail(errorHandler);
-          }
+          if (typeof plugins === 'undefined') {
+            plugins = ['cordova-plugin-console', 'cordova-plugin-whitelist'];
+          } 
+          promise = runCordovaCmd(['plugin', 'add'].concat(plugins)).fail(errorHandler);
 
           for (var i=0; i<platforms.length; i++) {
             promise = promise.then(
