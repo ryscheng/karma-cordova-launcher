@@ -31,7 +31,8 @@ function runCordovaCmd(args) {
   });
 }
 
-var Cordova = function(id, emitter, args, logger, config) {
+var Cordova = function(id, emitter, args, logger, config, baseBrowserDecorator) {
+  baseBrowserDecorator(this);
   var self = this;
   self.settings = config.cordovaSettings;
   self.log = logger.create('launcher.cordova');
