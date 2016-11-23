@@ -1,6 +1,6 @@
 {
   "name": "karma-cordova-launcher",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A Karma plugin. Launch on Apache Cordova",
   "main": "index.js",
   "scripts": {},
