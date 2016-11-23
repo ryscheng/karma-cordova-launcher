@@ -114,20 +114,6 @@ var Cordova = function(id, emitter, args, logger, config, baseBrowserDecorator) 
       });
     });
   };
-
-  this.isCaptured = function() {
-    return true;
-  }
-
-  this.kill = function(done) {
-    self.log.debug("Killing");
-    done();
-  };
-
-  this.toString = function() {
-    return self.name;
-  };
-
 };
 
 // PUBLISH DI MODULE
