@@ -106,7 +106,9 @@ var Cordova = function(id, emitter, args, logger, config, baseBrowserDecorator) 
           promise = promise.then(runCordovaCmd.bind({}, ['build']), errorHandler);
           promise.then(function() {
             for (var i=0; i<platforms.length; i++) {
-              runCordovaCmd([mode, platforms[i], target], errorHandler);
+              var args = [mode, platforms[i]];
+              if(target) args.push(target);
+              runCordovaCmd(args, errorHandler);
             }
           }, errorHandler);
 
