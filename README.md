@@ -39,7 +39,7 @@ module.exports = function(config) {
     // ...
     cordovaSettings: {
       platforms: ['android', 'ios'],
-	  mode: 'emulate',
+      mode: 'emulate',
       hostip: '10.0.2.2',
       target: '0468de2a213eae29',
       plugins: [
