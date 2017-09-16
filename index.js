@@ -64,11 +64,16 @@ var Cordova = function(id, emitter, args, logger, config, baseBrowserDecorator) 
         }
         var newUrl = url + "?id=" + id;
         var ip = '10.0.2.2'; //default ip used by the Android emulator
+        var init = '';
         if(self.settings.hostip) {
           ip = self.settings.hostip;
         }
         newUrl = newUrl.replace(/localhost/g, ip);
         var toWrite = read_data.toString().replace(/NEWURL/g, newUrl);
+        if(self.settings.init) {
+          init = self.settings.init;
+        }
+        toWrite = toWrite.replace(/INIT/g, init);
         fs.writeFile(CORDOVA_DIR + "/www/js/inserttest.js", toWrite, function (write_err) {
           if (write_err) {
             errorHandler(write_err);
