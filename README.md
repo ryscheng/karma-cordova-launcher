@@ -43,7 +43,7 @@ module.exports = function(config) {
       hostip: '10.0.2.2',
       target: '0468de2a213eae29',
       plugins: [
-        'org.apache.cordova.console'
+        'cordova-plugin-console'
       ]
     },
     browsers: ['Cordova'],
